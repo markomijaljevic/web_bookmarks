@@ -1,7 +1,7 @@
 # Web Bookmarks API
 
 ## API routes
-- Project Contains basic CRUD API actions.
+- Project contains basic CRUD API actions.
   - Create (POST /api/bookmark/)
   - Read (GET /api/bookmark/2/)
   - Update (PUT /api/bookmark/2/)
