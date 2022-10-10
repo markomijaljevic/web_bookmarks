@@ -51,7 +51,7 @@ class AuthenticatedUserBookmarkViewSetTest(TestCase):
 
     def test_update_bookmark_good(self):
         response = self.client.put(
-            "/api/bookmark/1/",
+            "/api/bookmark/2/",
             data={
                 "title": "put",
                 "url": "test",
@@ -65,12 +65,12 @@ class AuthenticatedUserBookmarkViewSetTest(TestCase):
             "/api/bookmark/1/", data={"url": "test"}, content_type="application/json"
         )
 
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
     def test_delete_bookmark_good(self):
         response = self.client.delete("/api/bookmark/1/")
 
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 404)
 
     def test_filter_private_bookmark_good(self):
         response = self.client.get("/api/bookmark/", {"private": True})

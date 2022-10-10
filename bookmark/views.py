@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
+from django.db.models import Q
 
 from bookmark.models import Bookmark
 from bookmark.serializers import BookmarkSerializer
@@ -23,7 +24,13 @@ class BookmarkViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            queryset = Bookmark.objects.all()
+
+            if self.request.method in ["DELETE", "PUT"]:
+                queryset = Bookmark.objects.filter(user=self.request.user)
+            else:
+                queryset = Bookmark.objects.filter(
+                    Q(user=self.request.user) | Q(private=False)
+                )
         else:
             queryset = Bookmark.objects.filter(private=False)
         return queryset
