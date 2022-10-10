@@ -1,0 +1,43 @@
+# Create Bookmark POST
+curl --location --request POST 'http://localhost:8000/api/bookmark/' \
+--header 'Authorization: Basic bWFya286bWFya28=' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title":"Test Postman public Bookmarks",
+    "url":"http://localhost:8000/api/bookmarks"
+}'
+
+
+# Get All Bookmark GET
+curl --location --request GET 'http://localhost:8000/api/bookmark/' \
+--header 'Authorization: Basic bWFya286bWFya28='
+
+
+# Get Specific Bookmark GET
+curl --location --request GET 'http://localhost:8000/api/bookmark/2/' \
+--header 'Authorization: Basic bWFya286bWFya28='
+
+
+# Update Bookmark PUT
+curl --location --request PUT 'http://localhost:8000/api/bookmark/6/' \
+--header 'Authorization: Basic bWFya286bWFya28=' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title":"Test Bookmarks update",
+    "url":"http://localhost:8000/api/bookmarks"
+}'
+
+
+# Delete Bookmark DELETE
+curl --location --request DELETE 'http://localhost:8000/api/bookmark/6/' \
+--header 'Authorization: Basic bWFya286bWFya28='
+
+
+# Filter Bookmark by Private Flag GET
+curl --location --request GET 'http://localhost:8000/api/bookmark?private=true' \
+--header 'Authorization: Basic bWFya286bWFya28='
+
+
+# Filter Bookmark by user ID and Private Flag GET
+curl --location --request GET 'http://localhost:8000/api/bookmark?private=true&user_id=1' \
+--header 'Authorization: Basic bWFya286bWFya28='
